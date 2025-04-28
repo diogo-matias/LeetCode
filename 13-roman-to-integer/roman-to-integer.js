@@ -14,16 +14,16 @@ const romanValues = {
 }
 
 var romanToInt = function(s) {
-    const arr = Array.from(s);
+      let total = 0;
+    for (let i = 0; i < s.length; i++) {
+        const current = romanValues[s[i]];
+        const next = romanValues[s[i + 1]];
 
-    const numersArr = arr.map((x, index) => {
-        const currentValue = romanValues[x];
-        const nextValue = romanValues[arr[index + 1]]
-        const operation = currentValue < nextValue ?  '-' : '+'
-
-        return `${operation}${currentValue}`
-
-    }).join("")
-
-    return eval(numersArr)
+        if (current < next) {
+            total -= current;
+        } else {
+            total += current;
+        }
+    }
+    return total;
 };
