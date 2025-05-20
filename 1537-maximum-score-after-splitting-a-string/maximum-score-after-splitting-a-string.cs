@@ -1,30 +1,27 @@
 public class Solution {
-    public int MaxScore(string s) {
-        int sum = 0;
+     public int MaxScore(string s) {
+        int totalOnes = 0;
+        foreach (char c in s)
+        {
+            if (c == '1') totalOnes++;
+        }
 
-        for(var i = 1; i < s.Length; i++){
-            int zerosCount = 0;
-            int onesCount = 0;
-            int currentSum = 0;
+        int maxScore = 0;
+        int zerosLeft = 0;
+        int onesRight = totalOnes;
 
-            for(var k = 0; k < s.Length; k++){
-                if (k < i){
-                    if (s[k] == '0'){
-                        zerosCount++;
-                    } 
-                } else {
-                    if (s[k] == '1'){
-                        onesCount++;
-                    }
-                }
-            }
+        for (int i = 0; i < s.Length - 1; i++)
+        {
+            if (s[i] == '0') zerosLeft++;
+            else onesRight--;
 
-            currentSum = zerosCount + onesCount;
-            if (currentSum > sum){
-                sum = currentSum;
+            int currentScore = zerosLeft + onesRight;
+            if (currentScore > maxScore)
+            {
+                maxScore = currentScore;
             }
         }
-    
-        return sum;
+
+        return maxScore;
     }
 }
