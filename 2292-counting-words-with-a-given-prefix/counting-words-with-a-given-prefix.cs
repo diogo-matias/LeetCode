@@ -3,7 +3,7 @@ public class Solution {
         int count = 0;
 
         foreach (var word in words) {
-            if (startsWith(word, pref)) {
+            if (word.StartsWith(pref)) {
                 count++;
             }
         }
