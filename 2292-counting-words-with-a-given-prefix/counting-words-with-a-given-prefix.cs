@@ -1,18 +1,13 @@
 public class Solution {
     public int PrefixCount(string[] words, string pref) {
-        int sum = 0;
+        int count = 0;
 
-        for(var i = 0; i < words.Length; i++){
-            if (pref.Length > words[i].Length){
-                continue;
+        foreach (var word in words) {
+            if (word.StartsWith(pref)) {
+                count++;
             }
-
-            var substring = words[i].Substring(0, pref.Length);
-            sum = substring == pref ? sum + 1 : sum;
-
-            Console.WriteLine(sum);
         }
 
-        return sum;
+        return count;
     }
 }
