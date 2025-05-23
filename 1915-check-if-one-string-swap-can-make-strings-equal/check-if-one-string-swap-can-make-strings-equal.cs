@@ -1,24 +1,17 @@
 public class Solution {
-    public bool AreAlmostEqual(string s1, string s2) {
-        if (s1.Length != s2.Length){
-            return false;
-        }
+   public bool AreAlmostEqual(string s1, string s2) {
+        if (s1.Length != s2.Length) return false;
 
-        for(var i = 0; i < s1.Length; i++){
-            var ss1 = s1[i];
+        char[] chars = s1.ToCharArray();
 
-            for (var k = i; k < s1.Length; k++){
-                var ss2 = s1[k];
-                var a = s1.ToArray();
+        for (int i = 0; i < s1.Length; i++) {
+            for (int k = i; k < s1.Length; k++) {
+                
+                (chars[i], chars[k]) = (chars[k], chars[i]);
 
-                a[k] = ss1;
-                a[i] = ss2;
+                if (new string(chars) == s2) return true;
 
-                string result = String.Join("", a);
-
-                if (result == s2){
-                    return true;
-                }
+                (chars[i], chars[k]) = (chars[k], chars[i]);
             }
         }
 
